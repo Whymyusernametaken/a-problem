@@ -2,19 +2,28 @@ def subsequence(array):
     result = []
     saved = []
     last = None
-    for e in sub_array:
+    mark = 0
+    for i, e in enumerate(sub_array):
         if last is None:
             last = e
+            continue
         elif not result:
-            if e >= last:
-                last = e
-            else:
-                result = [last, e]
+            if e < last:
+
+                result = [*sub_array[mark:i], e]
+            elif e > last:
+                mark = i
         elif e < result[-1]:
-            _length_comparison(result, saved)
+            if len(result) > len(saved):
+                saved = result
+            result = [*sub_array[mark:i], e]
+            last = e
             continue
         else:
+            if e > last:
+                mark = i
             result.append(e)
+        last = e
     return saved
 
 
