@@ -1,0 +1,32 @@
+def subsequence(array):
+    result = []
+    saved = []
+    last = None
+    for e in sub_array:
+        if last is None:
+            last = e
+        elif not result:
+            if e >= last:
+                last = e
+            else:
+                result = [last, e]
+        elif e < result[-1]:
+            _length_comparison(result, saved)
+            continue
+        else:
+            result.append(e)
+    return saved
+
+
+def _length_comparison(result, saved):
+    if len(result) > len(saved):
+        saved = result
+        result = []
+    elif len(result) <= len(saved):
+        result = []
+    return saved
+
+
+
+array = [8,6,7,7,3,4,5,6,6,7,2,3,4,5,3,6,6,5,6,7,7,8,9,1]
+print(subsequence(array))
